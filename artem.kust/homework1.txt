@@ -1,0 +1,33 @@
+1. Create merge conflict and resolve it
+
+git branch ConflictBranch
+git checkout ConflictBranch
+touch conflict.py
+git add conflict.py
+git commit -m "The new conflict file has been added" 
+vi conflic.py
+This text just for testing
+git add conflict.py
+git commit -m "The new conflict file has been modified" 
+git checkout master
+vi conflic.py
+This text just for testing as well
+git add conflict.py
+git commit -m "The conflict file has been modified from master branch as well"
+git merge ConflictBranch
+//CONFLICT (add/add): Merge conflict in conflict.py
+//Auto-merging conflict.py
+//Automatic merge failed; fix conflicts and then commit the result.
+vi conflict.py
+//Make some changes to solve the problem and save it
+git add conflict.py
+git commit -m "The issue has been fixed"
+git merge ConflictBranch
+
+2. Create branch, push it to remote with different name, delete it from remote only
+
+git checkout -b BranchForTesting
+git push origin BranchForTesting:BranchForTesting2
+git push origin --delete BranchForTesting2
+
+
