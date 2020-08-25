@@ -165,7 +165,7 @@ def protected():
 
 @app.route('/cached', methods=['GET'])
 @cache.cached(timeout=50)
-@jwt_required
+# @jwt_required
 def cached():
     time.sleep(10)
     username = get_jwt_identity()
