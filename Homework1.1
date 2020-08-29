@@ -1,0 +1,73 @@
+TASK#1: create merge conflict and resolve it
+
++ cd /d/qa-auto-course
++ git init
+Initialized empty Git repository in D:/qa-auto-course/.git/
++ touch README.txt
++ git add README.txt
++git commit -m'commiting the initial file to work with'
++git add remote origin https://github.com/oksana-donadio/gl-qa-auto.git
++git push -u origin master
++git branch conflict-hm1
++git checkout conflict-hm1
++echo "This is a random text to work withjust to try programming" > README.txt
++git commit -m'edited the content of README.txt to cause conflict'
++git checkout master
++echo "just to try merging" >> README.txt
++git commit -am
++git merge conflict-hm1
+
++git merge conflict-hw1
+Auto-merging README.txt
+CONFLICT (content): Merge conflict in README.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+$ cat README.txt
+<<<<<<< HEAD
+just to try
+just to try conflict merging
+=======
+This is a random text to work withjust to try programming
+>>>>>>> conflict-hw1
+ 
+  ---edited the README.txt file to contain thsi content:
+ just to try
+just to try conflict merging
+This is a random text to work withjust to try programming
+
++ cat README.txt
+just to try
+just to try conflict merging
+This is a random text to work withjust to try programming
+
++ git add README.txt
++$ git commit -m'merged and resolved the conflict in README.txt'
+[master 6c9811a] merged and resolved the conflict in README.txt
+
++$ git log --oneline --decorate --graph --all
+*   6c9811a (HEAD -> master) merged and resolved the conflict in README.txt
+|\
+| * dab1740 (conflict-hw1) try programming
+* | 10ab191 trying merging
+* | 4a66f5d final step before merge conf
+* | e3beaf6 final content added
+|/
+* 7ad1156 (origin/master) commiting the initial file to work with
+
++git push origin master
+
+TASK#2: 2. Create branch, push it to remote with different name, delete it from remote only
+
+ git checkout -b branch_hw1
+ git push origin branch_hw1:newname_branch_hw1
+ git push origin --delete newname_branch_hw1
+ 
+ $ git branch --list
+  conflict-hw1
+  master
+* test_branch_hw1.2
+
+ 
+ 
+ 
+ 
