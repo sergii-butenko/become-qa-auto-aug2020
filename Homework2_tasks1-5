@@ -1,0 +1,104 @@
+Task 1 1. Move file from untracked to commit and the whole way back. Note: Do not skip any stage.
+
+git checkout master
+touch Homework2.txt 
+git add .
+git commit Homework2.txt 
+git status 
+git log 
+git reset --soft HEAD~1
+git restore --staged Homework2.txt
+
+oksana.donadio@LWO1-LHP-F71741 MINGW64 /d/qa-auto-course (homework2)
+$ git status
+On branch homework2
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Homework2.txt
+
+git status 
+git log [to check commits]
+
+
+Task 2
+
+git checkout -b oksana-donadio-homework2
+touch homework2_task2
+git add .
+$ git commit -m 'added file for hw2_task2'
+[homework2 1693330] added file for hw2_task2
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 Homework2_task2
+
+$ git checkout master
+error: Your local changes to the following files would be overwritten by checkout:
+        Homework2_task2
+Please commit your changes or stash them before you switch branches.
+Aborting
+git stash
+git status
+
+Task3 Create annotated tag. Push it, Remove it
+
+echo'homework 2 task 3 ready for release' >> homework2_task3
+git add homework2_task3
+git commit -m 'commited Homework 2 Task 3 to test tags'
+git tag -a hw2_task3
+$ git tag -a hw2_task3
+
+$ git push origin hw2_task3
+
+$ git show hw2_task3
+tag hw2_task3
+Tagger: oksana-donadio <oksana.donadio@globallogic.com>
+Date:   Mon Sep 14 19:14:59 2020 +0300
+
+tag for commiting TAsk 3 hw2
+
+commit 050929146c77e9d2390c2102c8dafb85ac63d17f (HEAD -> homework2, tag: hw2_task3)
+Author: oksana-donadio <oksana.donadio@globallogic.com>
+Date:   Mon Sep 14 19:14:37 2020 +0300
+
+    commited Homework 2 Task 3 to test tags
+
+diff --git a/homework2_task3 b/homework2_task3
+new file mode 100644
+index 0000000..e69de29
+
+$ git push origin --delete hw2_task3
+To https://github.com/oksana-donadio/gl-qa-auto.git
+ - [deleted]         hw2_task3
+
+oksana.donadio@LWO1-LHP-F71741 MINGW64 /d/qa-auto-course (homework2)
+
+$ git tag -d hw2_task3
+Deleted tag 'hw2_task3' (was f14b20e)
+
+git tag
+--
+
+TASK4 Create a branch from initial commit of master branch
+git checkout master
+git log
+git checkout commit-hash
+git checkout -b new-branch-name
+git switch to 
+
+Task 5. Remove file from git repository only(leave it on file system)
+echo "a file to complteet task 5" >> homework2_task5
+git add homework2_task5
+git commit -m 'added file to do task 5'
+git status
+git log
+git rm --cached homework2_task5
+git status
+oksana.donadio@LWO1-LHP-F71741 MINGW64 /d/qa-auto-course (homework2)
+$ git status
+On branch homework2
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        deleted:    homework2_task5
+
+
+
+
