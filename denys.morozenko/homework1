@@ -1,0 +1,75 @@
+1. Create merge conflict and resolve it
+
+git init
+Initialized empty Git repository in /home/nicevm/QA_training/remote_denys/.git/
+git commit -m "Initial commit for HW1"
+git branch mergeConflictForHW1
+gedit index.html
+cat index.html
+	modified in master
+git commit -am "from master branch"
+git checkout mergeConflictForHW1
+gedit index.html
+cat index.html
+	modified in mergeConflictForHW1
+git commit -am "from mergeConflictForHW1"
+git checkout master
+git merge mergeConflictForHW1
+	Auto-merging index.html
+	CONFLICT (content): Merge conflict in index.html
+	Automatic merge failed; fix conflicts and then commit the result.
+cat index.html
+	<<<<<<< HEAD
+	modified in master
+	=======
+	modified in mergeConflictForHW1
+	>>>>>>> mergeConflictForHW1
+gedit index.html
+cat index.html
+	modified in mergeConflictForHW1
+git add index.html
+git status
+	On branch master
+	All conflicts fixed but you are still merging.
+	  (use "git commit" to conclude merge)
+
+	Changes to be committed:
+		modified:   index.html
+git commit
+	[master 46d9466] Merge branch 'mergeConflictForHW1'
+	
+git log --oneline --decorate --graph --all
+*   cea6ff1 (HEAD -> master) Merge branch 'mergeConflictForHW1'
+|\  
+| * b61eb98 (mergeConflictForHW1) from mergeConflictForHW1
+* | 2d9356a from master branch
+|/  
+* 8e80e7f Initial commit for HW1
+ 
+
+
+2. Create branch, push it to remote with different name, delete it from remote only
+
+git checkout -b remoteBranchWithDifferentName
+	Switched to a new branch 'remoteBranchWithDifferentName'
+gedit new_file
+cat new_file
+	some modifications
+git add .
+git commit -m "new_file changed. About to be pushed into remote"
+	[remoteBranchWithDifferentName bf0aa7e] new_file changed. About to be pushed into remote
+	 1 file changed, 1 insertion(+), 1 deletion(-)
+git push -u qat remoteBranchWithDifferentName:new_remote_name 
+	---
+	 * [new branch]      remoteBranchWithDifferentName -> new_remote_name
+	Branch 'remoteBranchWithDifferentName' set up to track remote branch 'new_remote_name' from 'qat'.
+git push qat --delete new_remote_name
+ - [deleted]         new_remote_name
+git status
+On branch remoteBranchWithDifferentName
+Your branch is based on 'qat/new_remote_name', but the upstream is gone.
+  (use "git branch --unset-upstream" to fixup)
+git branch --unset-upstream
+git status
+On branch remoteBranchWithDifferentName
+nothing to commit, working tree clean
