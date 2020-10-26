@@ -1,0 +1,49 @@
+1. Move file from untracked to commit and the whole way back. Note: Do not skip any stage.
+
+touch homowork2
+git add homowork2
+echo "Just for testing" > ghomework2
+git add homowork2
+git commit -m "The new file homowork has been created"
+git reset --soft HEAD^1
+echo "new text" > homework2
+git reset .
+
+2. 2. Create situation when you changes in working directory going to be overwritten by update. And try to avoid the problem with `git stash` cmd
+
+touch stashtesting
+git add stashtesting
+echo "test" > stashtesting
+git commit -am "stashtesting file added"
+echo "Second test" > stashtesting
+git checkout master
+error: Your local changes to the following files would be overwritten by checkout:
+        stashtesting
+Please commit your changes or stash them before you switch branches.
+Aborting
+git stash 
+git checkout master
+
+3. Create annotated tag. Push it, Remove it
+
+git tag -a v1.1.1.0 -m 'Just trying to test tags'
+git tag -l
+git push local v1.1.1.0
+git push local --delete v1.1.1.0
+
+4. Create a branch from initial commit of master branch
+
+touch newbranchfromcommit
+git add newbranchfromcommit
+git commit -m "New branch from commit"
+git branch CommitBranch 16d750c08603d3ee5abd758a999ae919df0e856d
+git checkout CommitBranch
+Switched to branch 'CommitBranch'
+
+5. Remove file from git repository only(leave it on file system
+
+touch RemoveFile
+git add RemoveFile
+git commit -m "test"
+git rm --cached removefile
+rm 'removefile'
